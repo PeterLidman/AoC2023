@@ -8,33 +8,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class L01b {
-	private static List<Integer> depth;
+	private static List<String> cal;
 
 	public static void run(String ext) {
 		try {
-			depth = Files.readAllLines(Paths.get("./src/AoC2022/L01input" + ext + ".txt")).stream()
-					.map(Integer::valueOf).collect(Collectors.toList());
+			cal = Files.readAllLines(Paths.get("./src/AoC2022/L01input" + ext + ".txt")).stream()
+					.collect(Collectors.toList());
 		} catch (IOException e) {
 			System.out.println("fel vid filimport: " + e);
 		}
 
-		List<Integer> threeSum = new ArrayList<>();
-		for (int a = 0; a < depth.size() - 2; a++) {
-			threeSum.add(depth.get(a) + depth.get(a + 1) + depth.get(a + 2));
-		}
+		int sum = 0;
+		List<Integer> sumList = new ArrayList<>();
 
-		int currentDepth = threeSum.get(0);
-		int noIncreased = 0;
-		int newDepth;
-		for (int a = 1; a < threeSum.size(); a++) {
-			newDepth = threeSum.get(a);
-
-			if (currentDepth < newDepth) {
-				noIncreased++;
+		for (int a = 0; a < cal.size(); a++) {
+			if (cal.get(a).equals("")) {
+				sumList.add(sum);
+				sum = 0;
+			} else {
+				sum += Integer.valueOf(cal.get(a));
 			}
-			currentDepth = newDepth;
-
 		}
-		System.out.println("Depth increased " + noIncreased + " times");
+		sumList.add(sum);
+		sumList.sort(null);
+		System.out.println("3Max cal= " + (sumList.get(sumList.size()-3) + sumList.get(sumList.size()-2) + sumList.get(sumList.size()-1))	);
 	}
 }
