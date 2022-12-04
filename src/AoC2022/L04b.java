@@ -28,9 +28,7 @@ public class L04b {
 		int c = Integer.valueOf(second[0]);
 		int d = Integer.valueOf(second[1]);
 
-		if (b - a == d - c && a == c) {
-			return 1;
-		} else if (b - a > d - c) {
+		if (b - a >= d - c) {
 			if ((c >= a && c <= b) || (d >= a && d <= b)) {
 				return 1;
 			}
