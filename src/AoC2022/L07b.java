@@ -44,10 +44,10 @@ public class L07b {
 		}
 
 		long smallest = 70_000_000;
-		long needAlLeast = GetSize("[/]") - 40_000_000;
+		long needAtLeast = GetSize("[/]") - 40_000_000;
 		for (String a : d.keySet()) {
 			long size = GetSize(a);
-			if (size >= needAlLeast) {
+			if (size >= needAtLeast) {
 				smallest = Math.min(smallest, size);
 			}
 		}
