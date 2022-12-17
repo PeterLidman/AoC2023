@@ -17,8 +17,8 @@ public class Main {
 //		L10a.run("1"); L10a.run("0"); L10b.run("1"); L10b.run("0");
 //		L11t.run("1"); L11a.run("0"); L11b.run("1");
 //		L12a.run("1"); L12a.run("0"); L12b.run("1"); L12b.run("0");
-		L13a.run("1"); L13a.run("0"); L13b.run("1"); L13b.run("0");
-//		L14a.run("1"); L14a.run("0"); L14b.run("1"); L14b.run("0");
+//		L13a.run("1"); L13a.run("0"); L13b.run("1"); L13b.run("0");
+		L14a.run("1"); L14a.run("0"); L14b.run("1"); L14b.run("0");
 //		L15a.run("1"); L15a.run("0"); L15b.run("1"); L15b.run("0");
 //		L16a.run("0"); L16b.run("0");		
 //		L17a.run("0"); L17b.run("0");
