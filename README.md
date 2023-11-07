@@ -1,2 +1,2 @@
-# AoC2022
-Ger upp vid minsta motstånd
+# AoC2023
+Kollaborera mera

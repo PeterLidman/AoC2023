@@ -1,2 +1,2 @@
-module Aoc2022 {
+module Aoc2023 {
 }
