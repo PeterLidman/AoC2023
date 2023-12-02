@@ -6,26 +6,35 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class L02b {
-	private static List<String> strat;
+	private static List<String> game;
 
 	public static void run(String ext) throws IOException {
-		strat = Files.readAllLines(Paths.get("./src/AoC2022/L02input" + ext + ".txt"));
+		game = Files.readAllLines(Paths.get("./src/AoC2023/L02input" + ext + ".txt"));
 		int sum = 0;
 
-		for (int a = 0; a < strat.size(); a++) {
-			sum += switch (strat.get(a)) {
-			case "A X" -> 3 + 0;
-			case "A Y" -> 1 + 3;
-			case "A Z" -> 2 + 6;
-			case "B X" -> 1 + 0;
-			case "B Y" -> 2 + 3;
-			case "B Z" -> 3 + 6;
-			case "C X" -> 2 + 0;
-			case "C Y" -> 3 + 3;
-			case "C Z" -> 1 + 6;
-			default -> throw new IllegalArgumentException("Unexpected value: " + strat.get(a));
-			};
+		for (int a = 0; a < game.size(); a++) {
+			sum += power(game.get(a));
 		}
 		System.out.println("Total score: " + sum);
 	}
+
+	static int power(String in) {
+		String[] s = in.split(" ");
+		int r = 1, g = 1, b = 1;
+
+		for (int i = 0; i < s.length; i++) {
+			if (s[i].startsWith("red")) {
+				r = Math.max(r, Integer.parseInt(s[i - 1]));
+			}
+			if (s[i].startsWith("green")) {
+				g = Math.max(g, Integer.parseInt(s[i - 1]));
+			}
+			if (s[i].startsWith("blue")) {
+				b = Math.max(b, Integer.parseInt(s[i - 1]));
+			}
+		}
+
+		return r * g * b;
+	}
+
 }
