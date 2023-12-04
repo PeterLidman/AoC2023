@@ -3,40 +3,52 @@ package AoC2023;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class L04b {
 	private static List<String> input;
 
 	public static void run(String ext) throws IOException {
-		input = Files.readAllLines(Paths.get("./src/AoC2022/L04input" + ext + ".txt"));
+		input = Files.readAllLines(Paths.get("./src/AoC2023/L04input" + ext + ".txt"));
 
 		int sum = 0;
-		for (String s : input) {
-			sum += overlaps(s);
+		Integer[] cards = new Integer[input.size()];
+		for (int i = 0; i < input.size(); i++) {
+			cards[i] = 1;
+		}
+		for (int i = 0; i < input.size(); i++) {
+			for (int j = 0; j < cardPoints(input.get(i)); j++) {
+				cards[i + j + 1] += cards[i];
+			}
+		}
+		for (Integer s : cards) {
+			sum += s;
 		}
 		System.out.println("Total " + sum);
 	}
 
-	private static int overlaps(String in) {
-		String[] split = in.split(",");
-		String[] first = split[0].split("-");
-		String[] second = split[1].split("-");
+	private static int cardPoints(String in) {
+		String[] split = in.split("\\|");
+		String[] first = split[0].split("\s+");
+		String[] second = split[1].split("\s+");
 
-		int a = Integer.valueOf(first[0]);
-		int b = Integer.valueOf(first[1]);
-		int c = Integer.valueOf(second[0]);
-		int d = Integer.valueOf(second[1]);
+		List<Integer> winning = new ArrayList<>();
+		List<Integer> numbers = new ArrayList<>();
 
-		if (b - a >= d - c) {
-			if ((c >= a && c <= b) || (d >= a && d <= b)) {
-				return 1;
-			}
-		} else {
-			if ((a >= c && a <= d) || (b >= c && b <= d)) {
-				return 1;
+		for (int i = 2; i < first.length; i++) {
+			winning.add(Integer.valueOf(first[i]));
+		}
+		for (int i = 1; i < second.length; i++) {
+			numbers.add(Integer.valueOf(second[i]));
+		}
+
+		int correct = 0;
+		for (Integer a : winning) {
+			if (numbers.contains(a)) {
+				correct++;
 			}
 		}
-		return 0;
+		return correct;
 	}
 }
